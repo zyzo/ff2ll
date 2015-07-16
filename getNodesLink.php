@@ -67,13 +67,13 @@ class FF2LL {
 		$parsedUrl = parse_url($url);
 		if (!array_key_exists('host', $parsedUrl)) {
 			// bizarre case, just append to origin
-			return $url . '/node.json';
+			return $url . '/nodes.json';
 		}
-		$mappos = strpos($parsedUrl['path'], '/map/');
+		$mappos = strpos($parsedUrl['path'], 'map/');
 		if ($mappos) {
-			return '//' . $parsedUrl['host'] . '/map/nodes.json';
+			return $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/map/nodes.json';
 		} else {
-		return '//' . $parsedUrl['host'] . '/nodes.json';
+			return $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . '/nodes.json';
 		}
 	}
 
